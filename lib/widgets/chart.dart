@@ -97,6 +97,11 @@ class BarChartSample extends StatelessWidget {
           color: rightBarColor,
           width: barWidth,
         ),
+        BarChartRodData(
+          toY: y2,
+          color: Colors.yellow,
+          width: barWidth,
+        ),
       ],
     );
   }

@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.brown, // Sesuaikan dengan tema Anda
       ),
-      initialRoute: '/login', // Route awal saat aplikasi dibuka
+      initialRoute: '/dashboard', // Route awal saat aplikasi dibuka
       routes: {
         '/login': (context) => LoginScreen(), // Halaman Login
         '/dashboard': (context) => Dashboard(), // Halaman Dashboard

@@ -20,7 +20,7 @@ class GasCard extends StatelessWidget {
     return Card(
       elevation: 0.1,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(20),
         side: BorderSide(color: color, width: 0.1),
       ),
       color: color,
@@ -40,8 +40,8 @@ class GasCard extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Container(
-              height: 140,
-              width: 140,
+              height: 150,
+              width: 150,
               child: SfRadialGauge(
                 axes: <RadialAxis>[
                   RadialAxis(
