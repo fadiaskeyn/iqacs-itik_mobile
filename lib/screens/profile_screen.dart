@@ -55,9 +55,9 @@ class ProfilePage extends StatelessWidget {
               ),
               SizedBox(height: 20),
               _buildProfileItem(
-                icon: Icons.person,
-                title: 'Nama',
-                value: 'Admin',
+                icon: Icons.phone,
+                title: 'Nomor Telepon',
+                value: '+6285745616430',
               ),
               _buildProfileItem(
                 icon: Icons.email,
@@ -65,14 +65,7 @@ class ProfilePage extends StatelessWidget {
                 value: 'admin@gmail.com',
               ),
               _buildProfileItem(
-                icon: Icons.phone,
-                title: 'Nomor Telepon',
-                value: '+6285745616430',
-              ),
-              _buildProfileItem(
-                icon: Icons.business,
-                title: 'Jabatan',
-                value: 'Owner',
+                icon: Icons.lock,
               ),
               SizedBox(height: 30),
               Center(
@@ -100,9 +93,9 @@ class ProfilePage extends StatelessWidget {
   }
 
   Widget _buildProfileItem({
-    required IconData icon,
-    required String title,
-    required String value,
+    required icon,
+    String? title,
+    String? value,
   }) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -114,14 +107,10 @@ class ProfilePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                title,
+                title != null ? title : ' ',
                 style: TextStyle(fontSize: 14, color: Colors.grey),
               ),
               SizedBox(height: 5),
-              Text(
-                value,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
             ],
           ),
         ],

@@ -2,24 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:inovokasi_rebuild/screens/login_screen.dart';
 import 'package:inovokasi_rebuild/screens/dashboard.dart';
 import 'screens/profile_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inovokasi_rebuild/cubit/chart_cubit.dart';
+import '../cubit/stats_cubit.dart';
+import '../service/api_service.dart';
+import '../service/chart_api_service.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => StatsCubit(ApiService())),
+        BlocProvider(create: (context) => ChartCubit(ChartService())),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // Hilangkan banner debug
+      debugShowCheckedModeBanner: false,
       title: 'IQACS Duck',
       theme: ThemeData(
-        primarySwatch: Colors.brown, // Sesuaikan dengan tema Anda
+        primarySwatch: Colors.brown,
       ),
-      initialRoute: '/dashboard', // Route awal saat aplikasi dibuka
+      initialRoute: '/login',
       routes: {
-        '/login': (context) => LoginScreen(), // Halaman Login
-        '/dashboard': (context) => Dashboard(), // Halaman Dashboard
+        '/login': (context) => LoginScreen(),
+        '/dashboard': (context) => Dashboard(),
         '/profile': (context) => ProfilePage(),
       },
     );

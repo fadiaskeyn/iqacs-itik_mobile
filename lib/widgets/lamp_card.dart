@@ -13,8 +13,8 @@ class LampuCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-      padding: EdgeInsets.all(15),
+      margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+      padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -23,7 +23,7 @@ class LampuCard extends StatelessWidget {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 2,
             blurRadius: 5,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -36,12 +36,12 @@ class LampuCard extends StatelessWidget {
             height: 120.0,
             fit: BoxFit.fill,
           ),
-          SizedBox(width: 15),
+          const SizedBox(width: 15),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(
+                const Text(
                   "Status Lampu",
                   style: TextStyle(
                     fontSize: 20,
@@ -49,13 +49,13 @@ class LampuCard extends StatelessWidget {
                     color: Colors.red,
                   ),
                 ),
-                SizedBox(height: 25),
+                const SizedBox(height: 25),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       isOn ? "Hidup" : "Mati",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,

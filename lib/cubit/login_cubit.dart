@@ -11,7 +11,7 @@ class LoginCubit extends Cubit<LoginState> {
     try {
       // Simulasi autentikasi
       await Future.delayed(Duration(seconds: 2));
-      if (email == 'admin@gmail.com' && password == 'admin123') {
+      if (email == 'admin@gmail.com' && password == '12345678') {
         emit(LoginSuccess());
       } else {
         emit(LoginFailure('Invalid email or password'));
