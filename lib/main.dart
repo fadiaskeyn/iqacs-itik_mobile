@@ -7,6 +7,7 @@ import 'package:inovokasi_rebuild/cubit/chart_cubit.dart';
 import '../cubit/stats_cubit.dart';
 import '../service/api_service.dart';
 import '../service/chart_api_service.dart';
+import 'screens/tap_water.dart';
 
 void main() {
   runApp(
@@ -29,11 +30,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.brown,
       ),
-      initialRoute: '/login',
+      initialRoute: '/dashboard',
       routes: {
         '/login': (context) => LoginScreen(),
         '/dashboard': (context) => Dashboard(),
         '/profile': (context) => ProfilePage(),
+        '/tapwater': (context) => TapWater(),
       },
     );
   }

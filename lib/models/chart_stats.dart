@@ -11,9 +11,10 @@ class ChartStats {
 
   factory ChartStats.fromJson(Map<String, dynamic> json) {
     return ChartStats(
-      temperature: json['temperature'],
-      ammonia: json['ammonia'],
-      humidity: json['humidity'],
+      // Parsing ke double menggunakan .toDouble()
+      temperature: (json['temperature'] as num).toDouble(),
+      ammonia: (json['ammonia'] as num).toDouble(),
+      humidity: (json['humidity'] as num).toDouble(),
     );
   }
 }

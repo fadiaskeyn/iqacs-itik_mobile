@@ -23,35 +23,48 @@ class ProfilePage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Profile Picture, Name, and Role
               Center(
-                child: CircleAvatar(
-                  radius: 50,
-                  backgroundImage: AssetImage('assets/profile_image2.png'),
-                ),
-              ),
-              SizedBox(height: 20),
-              Center(
-                child: Text(
-                  'Admin',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Center(
-                child: Text(
-                  'Owner',
-                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      radius: 60,
+                      backgroundImage: AssetImage('assets/profile_image2.png'),
+                    ),
+                    SizedBox(height: 16),
+                    Text(
+                      'Admin',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    Text(
+                      'Owner',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(height: 30),
-              Divider(color: Colors.grey.shade300),
-              SizedBox(height: 10),
+              // Divider
+              Divider(
+                color: Colors.grey.shade300,
+                thickness: 1,
+              ),
+              SizedBox(height: 20),
+              // Informasi Pribadi Header
               Text(
                 'Informasi Pribadi',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20),
               _buildProfileItem(
@@ -66,21 +79,24 @@ class ProfilePage extends StatelessWidget {
               ),
               _buildProfileItem(
                 icon: Icons.lock,
+                title: 'Ganti Password',
               ),
               SizedBox(height: 30),
+              // Kembali Button
               Center(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 14),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(12),
                     ),
+                    backgroundColor: Colors.red,
                   ),
                   onPressed: () {
-                    Navigator.pop(context); // Kembali ke halaman sebelumnya
+                    Navigator.pop(context);
                   },
                   child: Text(
-                    'Kembali',
+                    'Log Out',
                     style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
                 ),
@@ -93,24 +109,32 @@ class ProfilePage extends StatelessWidget {
   }
 
   Widget _buildProfileItem({
-    required icon,
+    required IconData icon,
     String? title,
     String? value,
   }) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 12),
       child: Row(
         children: [
-          Icon(icon, color: Colors.brown, size: 28),
+          // Icon
+          Icon(icon, color: Colors.brown, size: 30),
           SizedBox(width: 20),
+          // Column for title and value
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                title != null ? title : ' ',
-                style: TextStyle(fontSize: 14, color: Colors.grey),
+                title ?? '',
+                style: TextStyle(fontSize: 16, color: Colors.black),
               ),
-              SizedBox(height: 5),
+              if (value != null) ...[
+                SizedBox(height: 5),
+                Text(
+                  value,
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
+              ]
             ],
           ),
         ],

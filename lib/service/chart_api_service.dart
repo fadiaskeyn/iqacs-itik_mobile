@@ -9,15 +9,33 @@ class ChartService {
     try {
       final response = await http.get(Uri.parse('$baseUrl/stats/charts'));
 
+      // Cetak response status code
+      print("Response status code: ${response.statusCode}");
+
+      // Cetak raw response body untuk debugging
+      print("Response body: ${response.body}");
+
       if (response.statusCode == 200) {
         final data = json.decode(response.body) as Map<String, dynamic>;
-        return data.map((time, statsJson) {
+
+        // Cetak hasil decoded JSON
+        print("Decoded JSON: $data");
+
+        // Map data menjadi objek ChartStats
+        final mappedData = data.map((time, statsJson) {
           return MapEntry(time, ChartStats.fromJson(statsJson));
         });
+
+        // Cetak data terproses (parsed)
+        print("Parsed data: $mappedData");
+
+        return mappedData;
       } else {
-        throw Exception('Failed to load chart stats');
+        throw Exception('Failed to load chart stats: ${response.statusCode}');
       }
     } catch (e) {
+      // Cetak error saat debugging
+      print("Error while fetching chart stats: $e");
       throw Exception('An error occurred while fetching chart stats: $e');
     }
   }

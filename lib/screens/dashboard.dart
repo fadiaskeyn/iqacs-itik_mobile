@@ -10,6 +10,7 @@ import '../service/api_service.dart';
 import '../widgets/chart.dart';
 import '../widgets/lamp_card.dart';
 import '../service/chart_api_service.dart';
+import 'dart:async';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -20,6 +21,7 @@ class _DashboardState extends State<Dashboard> {
   bool _isOn = false;
   int? selectedAlat;
   final List<int> listAlat = [1, 2, 3, 4, 5];
+  Timer? _timer; // Timer untuk refresh otomatis
 
   void onToggle(bool value) {
     setState(() {
@@ -31,10 +33,23 @@ class _DashboardState extends State<Dashboard> {
   void initState() {
     super.initState();
 
-    // Menjadwalkan fetchChartStats setelah widget dibangun
+    // Fetch data pertama kali
     Future.microtask(() {
       context.read<ChartCubit>().fetchChartStats();
     });
+
+    // Setup timer untuk refresh otomatis setiap 5 detik
+    _timer = Timer.periodic(Duration(seconds: 5), (timer) {
+      // Panggil metode untuk fetch data
+      context.read<ChartCubit>().fetchChartStats();
+    });
+  }
+
+  @override
+  void dispose() {
+    // Hentikan timer saat widget dihancurkan
+    _timer?.cancel();
+    super.dispose();
   }
 
   @override

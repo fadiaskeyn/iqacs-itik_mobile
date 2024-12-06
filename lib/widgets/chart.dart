@@ -90,7 +90,7 @@ class BarChartSample extends StatelessWidget {
   }
 
   BarChartGroupData makeGroupData(int x, double y1, double y2) {
-    const double barWidth = 10;
+    const double barWidth = 8;
     return BarChartGroupData(
       barsSpace: 4,
       x: x,
@@ -103,6 +103,11 @@ class BarChartSample extends StatelessWidget {
         BarChartRodData(
           toY: y2,
           color: rightBarColor,
+          width: barWidth,
+        ),
+        BarChartRodData(
+          toY: y2,
+          color: Colors.yellow,
           width: barWidth,
         ),
       ],
