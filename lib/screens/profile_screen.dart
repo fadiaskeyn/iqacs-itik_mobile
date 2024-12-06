@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:inovokasi_rebuild/Theme.dart';
 
@@ -93,7 +95,7 @@ class ProfilePage extends StatelessWidget {
                     backgroundColor: Colors.red,
                   ),
                   onPressed: () {
-                    Navigator.pop(context);
+                    exit(0);
                   },
                   child: Text(
                     'Log Out',

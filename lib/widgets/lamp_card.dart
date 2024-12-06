@@ -1,15 +1,6 @@
 import 'package:flutter/material.dart';
 
 class LampuCard extends StatelessWidget {
-  final bool isOn;
-  final ValueChanged<bool> onToggle;
-
-  const LampuCard({
-    Key? key,
-    required this.isOn,
-    required this.onToggle,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,9 +22,9 @@ class LampuCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset(
-            isOn ? "assets/lamp_on.png" : "assets/lamp_off.png",
-            width: 120.0,
-            height: 120.0,
+            "assets/tamp.png",
+            width: 130.0,
+            height: 110.0,
             fit: BoxFit.fill,
           ),
           const SizedBox(width: 15),
@@ -42,7 +33,7 @@ class LampuCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 const Text(
-                  "Status Lampu",
+                  "Kontrol Pompa Air",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -53,21 +44,22 @@ class LampuCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      isOn ? "Hidup" : "Mati",
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 80,
-                      height: 40,
-                      child: Switch(
-                        value: isOn,
-                        onChanged: onToggle,
-                      ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 90, // Jarak kosong di kiri tombol
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            Icons.arrow_circle_right_outlined,
+                            size: 60, // Ukuran ikon
+                            color: Colors.brown, // Warna ikon
+                          ),
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/tapwater');
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),

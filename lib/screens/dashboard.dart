@@ -64,7 +64,7 @@ class _DashboardState extends State<Dashboard> {
         builder: (context, state) {
           double temperature = 0.0;
           double humidity = 0.0;
-          int ammonia = 0;
+          double ammonia = 0.0;
 
           if (state is StatsLoaded) {
             temperature = state.stats.temperature;
@@ -95,9 +95,7 @@ class _DashboardState extends State<Dashboard> {
                         });
                       },
                     ),
-                    LampuCard(isOn: _isOn, onToggle: onToggle),
-
-                    // Card Amonia
+                    LampuCard(),
                     Container(
                       height: 150,
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -170,12 +168,39 @@ class _DashboardState extends State<Dashboard> {
                           side:
                               const BorderSide(color: Colors.grey, width: 0.5),
                         ),
-                        child: BarChartSample(
-                          title: "Data Bar Chart",
-                          leftBarColor: Colors.blue,
-                          rightBarColor: Colors.red,
-                          avgColor: Colors.green,
-                          data: chartState.stats!, // Data diteruskan ke grafik
+                        child: Padding(
+                          padding: const EdgeInsets.all(
+                              10.0), // Tambahkan padding agar konten tidak menempel pada tepi
+                          child: Column(
+                            crossAxisAlignment:
+                                CrossAxisAlignment.start, // Teks rata kiri
+                            children: [
+                              BarChartSample(
+                                title: "Data Bar Chart",
+                                leftBarColor: Colors.blue,
+                                rightBarColor: Colors.red,
+                                avgColor: Colors.green,
+                                data: chartState
+                                    .stats!, // Data diteruskan ke grafik
+                              ),
+                              const SizedBox(
+                                  height: 10), // Jarak antara grafik dan teks
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment
+                                    .center, // Atur sesuai kebutuhan
+                                children: [
+                                  Text('Suhu',
+                                      style: TextStyle(color: Colors.blue)),
+                                  SizedBox(width: 30), // Jarak antara elemen
+                                  Text('Amonia',
+                                      style: TextStyle(color: Colors.red)),
+                                  SizedBox(width: 30), // Jarak antara elemen
+                                  Text('Kelembapan',
+                                      style: TextStyle(color: Colors.yellow)),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );

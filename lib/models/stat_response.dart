@@ -1,7 +1,7 @@
 class StatResponse {
   final double temperature;
   final double humidity;
-  final int ammonia;
+  final double ammonia;
 
   StatResponse({
     required this.temperature,
@@ -11,9 +11,9 @@ class StatResponse {
 
   factory StatResponse.fromJson(Map<String, dynamic> json) {
     return StatResponse(
-      temperature: json['temperature'],
-      humidity: json['humidity'],
-      ammonia: json['ammonia'],
+      temperature: (json['temperature'] as num).toDouble(),
+      humidity: (json['humidity'] as num).toDouble(),
+      ammonia: (json['ammonia'] as num).toDouble(),
     );
   }
 }
