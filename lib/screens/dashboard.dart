@@ -18,16 +18,9 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  bool _isOn = false;
   int? selectedAlat;
-  final List<int> listAlat = [1, 2, 3, 4, 5];
-  Timer? _timer; // Timer untuk refresh otomatis
-
-  void onToggle(bool value) {
-    setState(() {
-      _isOn = value;
-    });
-  }
+  final List<int> listAlat = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  Timer? _timer;
 
   @override
   void initState() {
@@ -65,11 +58,13 @@ class _DashboardState extends State<Dashboard> {
           double temperature = 0.0;
           double humidity = 0.0;
           double ammonia = 0.0;
+          String last_update = '...';
 
           if (state is StatsLoaded) {
             temperature = state.stats.temperature;
             humidity = state.stats.humidity;
             ammonia = state.stats.ammonia;
+            last_update = state.stats.last_update;
           } else if (state is StatsError) {
             return Center(child: Text(state.message));
           } else if (state is StatsLoading) {
@@ -100,31 +95,56 @@ class _DashboardState extends State<Dashboard> {
                       height: 150,
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Card(
-                        elevation: 1,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          side: const BorderSide(color: Colors.brown, width: 1),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                "assets/amonia.png",
-                                width: 65.0,
-                                height: 65.0,
-                                fit: BoxFit.fill,
-                              ),
-                              const SizedBox(width: 20),
-                              Text(
-                                'Gas Amonia: $ammonia ppm',
-                                style: const TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
-                            ],
+                          elevation: 1,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side:
+                                const BorderSide(color: Colors.brown, width: 1),
                           ),
-                        ),
-                      ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  "assets/amonia.png",
+                                  width: 65.0,
+                                  height: 65.0,
+                                  fit: BoxFit.fill,
+                                ),
+                                const SizedBox(width: 30),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Gas Amonia: $ammonia ppm',
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 40),
+                                    Text(
+                                      'Terakhir Diperbarui',
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontStyle: FontStyle.italic,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    Text(
+                                      '$last_update',
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontStyle: FontStyle.italic,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          )),
                     ),
                     // Card Suhu & Kelembapan
                     SizedBox(

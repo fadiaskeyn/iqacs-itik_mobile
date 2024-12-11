@@ -5,6 +5,7 @@ import 'stats_state.dart';
 
 class StatsCubit extends Cubit<StatsState> {
   final ApiService apiService;
+
   StatsCubit(this.apiService) : super(StatsInitial());
 
   Future<void> fetchStats(int idAlat) async {
